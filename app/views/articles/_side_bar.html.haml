@@ -1,0 +1,19 @@
+.side-bar
+  .side-bar__box
+    -if (controller.controller_name == "users") || (controller.action_name == "index")
+      = form_tag '/', method: :get do |f|
+        %input#side-bar__box__search.side-bar__box__search{ name: "title", placeholder: 'ブログ内検索'}
+    %p.side-bar__box__newest
+      最新の投稿
+    %ul.side-bar__box__recent-articles
+      %li.side-bar__box__recent-articles__article
+        - @recent_articles.each do |article|
+          = link_to article_path(article) do
+            %p.side-bar__box__recent-articles__article__title
+              = article.title
+          = link_to user_path(article.user) do
+            %p.side-bar__box__recent-articles__article__name
+              by
+              = article.user.name
+          %p.side-bar__box__recent-articles__article__time
+            = article.created_at.strftime("%Y/%m/%d %H:%M")

@@ -1,0 +1,55 @@
+.side-bar {
+  height: calc(100vh - 80px);
+  position: fixed;
+  top: 124px;
+  width: 200px;
+  float: left;
+  border: 2px double white;
+  background-color: transparent;
+  &__box {
+    padding: 10px 10px 0;
+    color: white;
+    &__search{
+      height: 20px;
+      width: 150px;
+      margin: 10px auto;
+      border: 1px solid white;
+      background-color: transparent;
+      color: rgba(255, 255, 255 ,0.5);
+    }
+    ::placeholder{
+      color: rgba(255, 255, 255 ,0.5);
+    }
+    &__newest{
+      border-bottom: 1px solid white;
+      font-size: 20px;
+      font-weight: bold;
+      padding-bottom: 5px;
+    }
+    &__recent-articles {
+      margin-top:10px;
+      &__article {
+        list-style: none;
+        &__title{
+          text-decoration: none;
+          color: white;
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+        &__name {
+          color: white;
+          font-size: 15px;
+          margin-bottom: 5px;
+          text-align: right;
+        }
+        &__time {
+          color: white;
+          font-size: 12px;
+          margin-bottom: 10px;
+          text-align: right;
+          border-bottom: 1px solid white;
+        }
+      }
+    }
+  }
+}
