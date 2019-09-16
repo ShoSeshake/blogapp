@@ -1,0 +1,43 @@
+.devise
+  %h2 Sign up
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .box
+      .box__label-box
+        .box__label-box__name
+          = f.label :name
+          %br/
+          %em (6 characters maximum)
+        .box__label-box__name
+          = f.label :email
+        .box__label-box__name
+          = f.label :password
+          %br/
+          - if @minimum_password_length
+            %em
+              (#{@minimum_password_length} characters minimum)
+        .box__label-box__name
+          = f.label :password_confirmation
+      .form-box
+        .form-box__indi
+          = f.text_field :name, class: "form-field", autofocus: true, autocomplete: "off", maxlength: "6"
+        .form-box__indi
+          = f.email_field :email, class: "form-field", autofocus: true, autocomplete: "off"
+        .form-box__indi
+          = f.password_field :password, class: "form-field", autocomplete: "new-password"
+        .form-box__indi
+          = f.password_field :password_confirmation, class: "form-field", autocomplete: "new-password"
+    .radio_button
+      %p テーマカラー
+      = f.radio_button :color, "pink", class: "radio-button__indi", checked: "checked"
+      ピンク 
+      = f.radio_button :color, "blue" , class: "radio-button__indi"
+      ブルー
+      = f.radio_button :color, "green", class: "radio-button__indi"  
+      グリーン  
+      = f.radio_button :color, "dark", class: "radio-button__indi"
+      ダークブルー
+    .actions
+      = f.submit "Sign up", class: "btn"
+  .link-box      
+    = render "devise/shared/links"

@@ -1,0 +1,39 @@
+.header
+  .header__title
+    -if user_signed_in?
+      -if controller_name == "users" || action_name == "new"
+        = link_to user_path(@user) do
+          %h1 
+            = @user.name
+            のブログ
+      -elsif controller.action_name == "index"
+        = link_to root_path do
+          %h1 ブログ一覧
+      -else
+        = link_to user_path(@article.user) do
+          %h1 
+            = @article.user.name
+            のブログ
+    -else
+      %h1 ログインしてブログを始めよう！
+  .header__right-box
+    %ul.header__right-box__menu
+      -if user_signed_in?
+        %li.header__right-box__menu__new-article
+          = link_to new_article_path do
+            %p 投稿する
+        -if (controller.action_name == "show") && (controller.controller_name == "users")
+          %li.header__right-box__menu__my-page
+            = link_to root_path do
+              %p みんなのブログ
+        -else 
+          %li.header__right-box__menu__my-page
+            = link_to user_path(current_user) do
+              %p マイページ
+        %li.header__right-box__menu__sign-out
+          = link_to destroy_user_session_path, method: :delete do
+            %p サインアウト
+      -else
+        %li.header__right-box__menu__sign-in 
+          = link_to new_user_session_path, method: :post do
+            %p ログイン

@@ -1,0 +1,30 @@
+.devise
+  %h2 Log in
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .box
+      .box__label-box
+        .box__label-box__name
+          = f.label :email
+        .box__label-box__name
+          = f.label :password
+          %br/
+          - if @minimum_password_length
+            %em
+              (#{@minimum_password_length} characters minimum)
+        .box__label-box__name
+          = f.label :password_confirmation
+      .form-box
+        .form-box__indi
+          = f.email_field :email, class: "form-field", autocomplete: "off"
+        .form-box__indi
+          = f.password_field :password, class: "form-field", autocomplete: "new-password"
+        .form-box__indi
+          = f.password_field :password_confirmation, class: "form-field", autocomplete: "new-password"
+    - if devise_mapping.rememberable?
+      .remember
+        = f.check_box :remember_me
+        = f.label :remember_me
+    .actions
+      = f.submit "Log in", class: "btn"
+  .link-box      
+    = render "devise/shared/links"

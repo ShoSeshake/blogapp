@@ -1,0 +1,13 @@
+= render partial: "header"
+= render partial: "side_bar"
+.main-article
+  -@articles.each do |article|
+    .main-article__title
+      = link_to article_path(article) do
+        =article.title
+    .main-article__content
+      = simple_format(article.content)
+    .main-article__time
+      = article.created_at.strftime("%Y/%m/%d %H:%M")
+    .main-article__pagenation
+      = paginate(@articles)
